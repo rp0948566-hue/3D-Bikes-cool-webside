@@ -27,9 +27,18 @@ const onProgress = (event) => {
 };
 modelViewer.addEventListener('progress', onProgress);
 
-// Smooth Scroll Logic using Lerp
+// Smooth Scroll & Mouse Parallax
 let currentProgress = 0;
 let targetProgress = 0;
+let mouseX = 0;
+let mouseY = 0;
+let currentMouseX = 0;
+let currentMouseY = 0;
+
+window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2; // -1 to 1
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2; // -1 to 1
+});
 
 const renderLoop = () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -41,6 +50,10 @@ const renderLoop = () => {
 
     // Smooth lerp for cinematic precision (0.12 friction factor for faster response)
     currentProgress += (targetProgress - currentProgress) * 0.12;
+
+    // Mouse Smoothing
+    currentMouseX += (mouseX - currentMouseX) * 0.05;
+    currentMouseY += (mouseY - currentMouseY) * 0.05;
 
     // We break the scroll progress into specific cinematic keyframes:
     let offsetD, radius, heightOffset;
@@ -93,7 +106,12 @@ const renderLoop = () => {
 
     // Inject into the Model Viewer attributes
     modelViewer.cameraOrbit = `${orbitAngle}deg 75deg ${radius}m`;
-    modelViewer.cameraTarget = `${panX}m ${heightOffset}m ${panZ}m`;
+
+    // Add subtle mouse parallax to the target for extra "cool" points
+    const finalPanX = panX + (currentMouseX * 0.2);
+    const finalPanY = heightOffset - (currentMouseY * 0.1);
+
+    modelViewer.cameraTarget = `${finalPanX}m ${finalPanY}m ${panZ}m`;
     modelViewer.fieldOfView = `${fieldOfView}deg`;
 
     requestAnimationFrame(renderLoop);
