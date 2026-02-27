@@ -1,0 +1,11 @@
+{
+  "name": "three-d-website",
+  "version": "1.0.0",
+  "description": "3D Website Project",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

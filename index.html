@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Surge Electric Bike</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link type="text/css" href="./style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <canvas id="bg-particles"></canvas>
+    <div class="ambient-glow"></div>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="#" class="pill-btn">Explore</a>
+            <a href="#" class="pill-btn">About</a>
+            <a href="#" class="pill-btn">Bikes</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="preorder-btn">
+                <div class="icon-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </div>
+                Pre-order Now
+            </a>
+        </div>
+    </header>
+
+    <model-viewer id="bike-viewer" src="5b133dc8-d85c-4378-a771-9b5ffc9c2251.glb" ar
+        ar-modes="webxr scene-viewer quick-look" tone-mapping="neutral" shadow-intensity="2" exposure="1.5"
+        interaction-prompt="none" disable-zoom disable-pan environment-image="neutral">
+
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+    </model-viewer>
+
+    <section class="scroll-section intro-section visible">
+        <!-- The bike takes center stage here -->
+    </section>
+
+    <div class="spacer"></div>
+
+    <section class="scroll-section hero-section visible">
+        <div class="tech-badge"><span class="pulse-dot"></span> OS_VERSION: 2.0.4</div>
+        <h1 class="hero-title">
+            <span class="text-outline">CRAVE</span> THE THRILL.<br>
+            <span class="text-gradient">DEFY</span> LIMITS.
+        </h1>
+        <p class="hero-desc">The ultimate electric motion machine engineered for the next generation. No compromises.
+            Just pure, unadulterated physics.</p>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section class="scroll-section front-section">
+        <div class="widgets-container">
+            <div class="widget map-widget">
+                <div class="map-label">GPS</div>
+                <svg width="100%" height="80" viewBox="0 0 200 100">
+                    <path d="M10,80 L60,40 L100,70 L160,30 L200,40" stroke="rgba(255,255,255,0.7)" fill="none"
+                        stroke-width="2" />
+                    <circle cx="10" cy="80" r="4" fill="#a3e635" />
+                    <circle cx="100" cy="70" r="4" fill="#22d3ee" />
+                    <text x="100" y="95" fill="#a3a3a3" font-size="8" text-anchor="middle">03/03/2023 10:00 AM</text>
+                </svg>
+            </div>
+            <div class="widget shifter-widget">
+                <div class="shifter-title">12X</div>
+                <div class="shifter-footer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 20V10M18 20V4M6 20v-4" />
+                    </svg>
+                    <span>SPEED SHIFTERS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section class="scroll-section end-section">
+        <p class="final-tagline">PROJECT: SURGE // STATUS: ONLINE</p>
+        <h1 class="end-title">
+            Ready to <span class="text-outline">Ride?</span><br>
+            Experience the <span class="text-gradient-alt">Surge</span>
+        </h1>
+
+        <div class="end-buttons">
+            <a href="#" class="btn-subscribe">Subscribe</a>
+            <a href="#" class="btn-preorder">
+                <div class="icon-circle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </div>
+                Pre-order Now
+            </a>
+        </div>
+
+        <div class="end-price-section">
+            <p class="price-label">PRE-ORDER PRICE:</p>
+            <p class="price-value">$3,499</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</body>
+
+</html>
