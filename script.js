@@ -39,8 +39,8 @@ const renderLoop = () => {
         targetProgress = scrollTop / scrollHeight;
     }
 
-    // Smooth lerp for cinematic precision (0.05 friction factor)
-    currentProgress += (targetProgress - currentProgress) * 0.05;
+    // Smooth lerp for cinematic precision (0.12 friction factor for faster response)
+    currentProgress += (targetProgress - currentProgress) * 0.12;
 
     // We break the scroll progress into specific cinematic keyframes:
     let offsetD, radius, heightOffset;
