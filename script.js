@@ -44,35 +44,46 @@ const renderLoop = () => {
 
     // We break the scroll progress into specific cinematic keyframes:
     let offsetD, radius, heightOffset;
-    const orbitAngle = currentProgress * 720; // 2 Full 360 rotations total as you scroll for extra wow factor
-    const fieldOfView = 15 + (currentProgress * 15); // zooms out overall
+
+    // Smooth 360 rotation for a normal, cool speed
+    const orbitAngle = currentProgress * 360;
+    const fieldOfView = 30; // Lock FOV to 30 for much more stable, normal proportion sizing
 
     if (currentProgress < 0.15) {
         // 1. [0.0 to 0.15]: Start Page (Intro Section) 
         // Start perfectly centered, wide shot.
         let p = currentProgress / 0.15; // 0 to 1
 
-        offsetD = p * 1.2; // Starts at 0 (center), goes to 1.2 (right edge)
-        radius = 2.5 - (p * 1.3); // Starts at wide 2.5, zooms firmly into tight 1.2
-        heightOffset = p * -0.4; // Starts 0 (vertically centered), pans to -0.4 (camera looks up)
+        offsetD = p * 1.4; // Starts at 0 (center), goes to 1.4 (right edge)
+        radius = 4.0 - (p * 1.0); // Starts perfectly wide at 4.0, zooms gently to 3.0
+        heightOffset = p * -0.2; // Starts 0 (vertically centered), pans to -0.2 (camera looks up)
 
-    } else if (currentProgress < 0.80) {
-        // 2. [0.15 to 0.80]: Hero Text and Widgets
-        // Keep bike locked hard right, slowly tracking wide over the texts.
-        let p = (currentProgress - 0.15) / 0.65; // 0 to 1
+    } else if (currentProgress < 0.45) {
+        // 2. [0.15 to 0.45]: Hero Text
+        // Keep bike locked hard right, tracking wide over the texts.
+        let p = (currentProgress - 0.15) / 0.30; // 0 to 1
 
-        offsetD = 1.2; // Stay right
-        radius = 1.2 + (p * 1.0); // Slowly zoom out from tight 1.2 to medium 2.2
-        heightOffset = -0.4 + (p * 0.4); // Slowly pan down vertically
+        offsetD = 1.4 - (p * 1.4); // Stays right initially, but animates to 0 (center)
+        radius = 3.0;  // Stay at a comfortable 'normal' size
+        heightOffset = -0.2 + (p * 0.2); // Slowly pan down vertically
+
+    } else if (currentProgress < 0.70) {
+        // 3. [0.45 to 0.70]: Center Break + Widgets Transition
+        // Bike moves from center back out to the right for the widgets
+        let p = (currentProgress - 0.45) / 0.25; // 0 to 1
+
+        offsetD = p * 1.4; // From 0 (center) out to 1.4 (right side)
+        radius = 3.0 + (p * 0.2); // slight zoom out
+        heightOffset = 0 + (p * 0.2); // pan down
 
     } else {
-        // 3. [0.80 to 1.0]: Final scroll into the Ready to Ride section
+        // 4. [0.70 to 1.0]: Final scroll into the Ready to Ride section
         // Bring the bike back exactly to the absolute center.
-        let p = (currentProgress - 0.80) / 0.20; // 0 to 1
+        let p = (currentProgress - 0.70) / 0.30; // 0 to 1
 
-        offsetD = 1.2 - (p * 1.2); // Snap back to 0 (centered)
-        radius = 2.2 + (p * 0.8); // Continue wide to 3.0
-        heightOffset = 0 + (p * 0.8); // Frame appropriately for final view
+        offsetD = 1.4 - (p * 1.4); // Snap back to 0 (centered)
+        radius = 3.2 + (p * 0.6); // Zoom out slightly to frame the final shot (3.8)
+        heightOffset = 0.2 + (p * 0.4); // Frame appropriately for final view
     }
 
     // Calculate world X and Z to shift camera target left/right purely relative to camera perspective
