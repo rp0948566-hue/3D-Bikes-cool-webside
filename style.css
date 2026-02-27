@@ -229,7 +229,7 @@ model-viewer {
 .final-tagline {
     font-size: 0.8rem;
     letter-spacing: 4px;
-    color: #a3a3a3;
+    color: #4ade80;
     text-transform: uppercase;
     margin-bottom: -20px;
 }
@@ -304,4 +304,92 @@ model-viewer {
     font-weight: 400;
     margin: 0;
     color: #ffffff;
+}
+
+/* --- NEW GEN-Z BIG TECH VIBE TYPOGRAPHY --- */
+
+.tech-badge {
+    background: rgba(30, 30, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e2e2e2;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', monospace;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #4ade80;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}
+
+.hero-title {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1.0;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+.text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #fff, #7a7a7a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-alt {
+    background: linear-gradient(90deg, #4ade80, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    color: #a3a3a3;
+    max-width: 500px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.end-title {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1.0;
+    text-align: center;
+    margin: 0;
+    letter-spacing: -2px;
 }
