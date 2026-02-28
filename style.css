@@ -207,43 +207,26 @@ body {
 }
 
 .pill-btn {
-    font-family: var(--font-accent);
-    text-decoration: none;
-    color: #fff;
     padding: 8px 18px;
     border-radius: 4px;
     /* geometric square-ish pills */
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pill-btn:hover {
     background: #fff;
-    color: #000;
 }
 
 .token {
-    font-family: var(--font-accent);
-    font-size: 0.5rem;
-    color: rgba(255, 255, 255, 0.2);
-    letter-spacing: 4px;
-    text-transform: uppercase;
     position: absolute;
     pointer-events: none;
 }
 
 .preorder-btn {
     background-color: #727272;
-    color: white;
     border-radius: 50px;
     padding: 6px 20px 6px 6px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 400;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -321,8 +304,6 @@ model-viewer {
     background: rgba(0, 0, 0, 0.5);
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.6rem;
-    font-weight: 600;
 }
 
 .shifter-widget {
@@ -333,9 +314,6 @@ model-viewer {
 }
 
 .shifter-title {
-    font-size: 5rem;
-    font-weight: 600;
-    line-height: 1;
     margin: 0;
 }
 
@@ -343,9 +321,6 @@ model-viewer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    font-size: 0.70rem;
-    font-weight: 600;
-    color: #e2e2e2;
 }
 
 .hero-section {
@@ -361,23 +336,14 @@ model-viewer {
     width: 35%;
     /* tighter width for text block */
     pointer-events: none;
-    text-align: left;
 }
 
 .subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
     margin-bottom: 25px;
-    text-transform: uppercase;
-    font-weight: 400;
 }
 
 .hero-title {
-    font-size: 2.3rem;
-    font-weight: 300;
-    line-height: 1.25;
     margin: 0;
-    color: #e2e2e2;
 }
 
 .scroll-section {
@@ -407,19 +373,10 @@ model-viewer {
 }
 
 .final-tagline {
-    font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: #4ade80;
-    text-transform: uppercase;
     margin-bottom: -20px;
 }
 
 .end-title {
-    font-size: 3.5rem;
-    font-weight: 300;
-    line-height: 1.2;
-    text-align: center;
-    color: #ffffff;
     margin: 0;
 }
 
@@ -435,10 +392,7 @@ model-viewer {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50px;
     padding: 12px 30px;
-    color: white;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 300;
     transition: all 0.3s ease;
     background: transparent;
 }
@@ -450,12 +404,9 @@ model-viewer {
 
 .btn-preorder {
     background-color: #ffffff;
-    color: #000000;
     border-radius: 50px;
     padding: 8px 24px 8px 8px;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -463,34 +414,21 @@ model-viewer {
 
 .btn-preorder .icon-circle {
     background-color: #727272;
-    color: white;
 }
 
 .end-price-section {
     margin-top: 20px;
-    text-align: center;
 }
 
 .price-label {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    color: #666666;
     margin: 0 0 10px 0;
-    text-transform: uppercase;
 }
 
 .price-value {
-    font-size: 2.2rem;
-    font-weight: 400;
     margin: 0;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.neon-text {
-    color: #4ade80;
-    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
-}
+.neon-text {}
 
 #fixed-scroll-hint {
     position: fixed;
@@ -535,11 +473,7 @@ model-viewer {
     }
 }
 
-.scroll-label {
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
+.scroll-label {}
 
 .badge-version {
     opacity: 0.4;
@@ -551,16 +485,12 @@ model-viewer {
 .tech-badge {
     background: rgba(30, 30, 30, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e2e2e2;
     padding: 6px 16px;
     border-radius: 50px;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
     margin-bottom: 20px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Inter', monospace;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     animation: floating 3s infinite ease-in-out;
@@ -581,7 +511,6 @@ model-viewer {
 }
 
 .neural-log {
-    font-size: 0.8rem;
     margin-top: 10px;
 }
 
@@ -624,15 +553,6 @@ model-viewer {
 }
 
 .hero-title {
-    font-family: var(--font-accent);
-    font-size: 8rem;
-    /* massive geometric size */
-    font-weight: 900;
-    line-height: 0.85;
-    margin: 0 0 20px 0;
-    text-transform: uppercase;
-    letter-spacing: -6px;
-    /* tight architectural spacing */
     position: relative;
     mix-blend-mode: difference;
 }
@@ -642,11 +562,6 @@ model-viewer {
     right: 40px;
     top: 50%;
     transform: translateY(-50%) rotate(90deg);
-    font-family: var(--font-accent);
-    font-size: 0.6rem;
-    letter-spacing: 12px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.2);
     z-index: 1000;
     white-space: nowrap;
 }
@@ -659,14 +574,12 @@ model-viewer {
 
 .hero-title::before {
     left: 2px;
-    text-shadow: -2px 0 #ff00c1;
     clip: rect(44px, 450px, 56px, 0);
     animation: glitch-anim 5s infinite linear alternate-reverse;
 }
 
 .hero-title::after {
     left: -2px;
-    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
     animation: glitch-anim2 1s infinite linear alternate-reverse;
 }
 
@@ -763,9 +676,6 @@ model-viewer {
     background: rgba(0, 0, 0, 0.8);
     border: 1px solid #4ade80;
     border-radius: 4px;
-    color: #fff;
-    font-family: monospace;
-    font-size: 0.7rem;
     padding: 6px 10px;
     position: absolute;
     top: 30px;
@@ -780,26 +690,8 @@ model-viewer {
     opacity: 1;
 }
 
-.text-outline {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
-}
 
-.text-gradient {
-    background: linear-gradient(90deg, #fff 0%, #4ade80 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    /* standard property */
-    -webkit-text-fill-color: transparent;
-}
 
-.text-gradient-alt {
-    background: linear-gradient(90deg, #4ade80 0%, #38bdf8 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    /* standard property */
-    -webkit-text-fill-color: transparent;
-}
 
 .status-ping {
     width: 6px;
@@ -836,11 +728,6 @@ model-viewer {
 }
 
 .hud-label {
-    font-family: monospace;
-    font-size: 0.65rem;
-    color: #4ade80;
-    text-transform: uppercase;
-    letter-spacing: 2px;
     margin-bottom: 5px;
     display: block;
 }
@@ -858,15 +745,8 @@ model-viewer {
     padding-left: 15px;
 }
 
-.stat-value {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #fff;
-}
 
 .stat-unit {
-    font-size: 0.7rem;
-    color: #666;
     margin-left: 4px;
 }
 
