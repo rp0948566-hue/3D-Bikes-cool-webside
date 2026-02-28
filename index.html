@@ -5,19 +5,46 @@
     <title>Surge Electric Bike</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
     <link type="text/css" href="./style.css" rel="stylesheet" />
 </head>
 
 <body>
     <canvas id="bg-particles"></canvas>
     <div class="ambient-glow"></div>
+    <div class="liquid-blob"></div>
+    <div class="hud-scanner"></div>
+    <div class="scanlines-overlay"></div>
+    <div class="vertical-badge">SPEC // SURGE // NEURAL_OS</div>
+
+    <div class="parallax-text float-1">SURGE</div>
+    <div class="parallax-text float-2">NEURAL</div>
+
+    <div class="token" style="top: 20%; right: 10%;">0xNEURAL_OVERRIDE</div>
+    <div class="token" style="bottom: 15%; left: 5%;">TRQ_VEC_88.2</div>
+
+    <!-- SVG Filters for Liquid/Gooey Effects -->
+    <svg id="svg-filters" width="0" height="0">
+        <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+            <feComposite in="SourceAtop" in2="goo" operator="atop" />
+        </filter>
+    </svg>
+
+    <div class="data-stream" id="data-stream">
+        <span>>> INITIALIZING_SURGE_OS...</span><br>
+        <span>>> NEURAL_LINK_ESTABLISHED [99%]</span><br>
+        <span>>> TORQUE_VECTORING: OPTIMIZED</span><br>
+    </div>
 
     <header class="navbar">
         <div class="nav-left">
-            <a href="#" class="pill-btn">Explore</a>
-            <a href="#" class="pill-btn">About</a>
-            <a href="#" class="pill-btn">Bikes</a>
+            <a href="#" class="pill-btn">MOD01</a>
+            <a href="#" class="pill-btn">ARCHIVE</a>
+            <a href="#" class="pill-btn">CORE</a>
         </div>
         <div class="nav-right">
             <a href="#" class="preorder-btn">
@@ -40,9 +67,33 @@
         <div class="progress-bar hide" slot="progress-bar">
             <div class="update-bar"></div>
         </div>
+
+        <button class="hotspot" slot="hotspot-battery" data-position="-0.2m 0.3m 0.1m" data-normal="0 1 0">
+            <div class="hotspot-annotation">72V LITHIUM CORE</div>
+        </button>
+        <button class="hotspot" slot="hotspot-motor" data-position="0.3m 0.1m 0m" data-normal="1 0 0">
+            <div class="hotspot-annotation">95Nm MID-DRIVE</div>
+        </button>
+        <button class="hotspot" slot="hotspot-frame" data-position="0m 0.5m 0m" data-normal="0 1 0">
+            <div class="hotspot-annotation">CARBON FORGED FRAME</div>
+        </button>
     </model-viewer>
 
     <section class="scroll-section intro-section visible">
+        <div class="meta-data-group">
+            <span class="hud-label"><span class="status-ping"></span>[ SYSTEM_ENCRYPTED_LOG ]</span>
+            <div class="flex-gap">
+                <div class="tech-badge">AERO: 0.21cd</div>
+                <div class="tech-badge">FLOW: 100%</div>
+                <div class="tech-badge">SYNC: ACTIVE</div>
+            </div>
+            <p class="hero-desc neural-log">
+                INITIALIZING_CORE_NEURAL_LINK...<br>
+                RE-CALIBRATING_TORQUE_VECTORING...<br>
+                DECODING_BIO_METRIC_DATA...<br>
+                STATUS: UNBREAKABLE
+            </p>
+        </div>
     </section>
 
     <div id="fixed-scroll-hint" class="scroll-indicator">
@@ -59,11 +110,29 @@
             <span class="badge-version">v2.0.4 hotfix</span>
         </div>
         <h1 class="hero-title">
-            <span class="text-outline">PUSH</span> THE CORE.<br>
-            <span class="text-gradient">BREAK</span> STATIC.
+            RAW<br>POWER.
         </h1>
         <p class="hero-desc">Experience the raw velocity of a machine designed to outperform everything. <span
                 class="neon-text">Carbon forged. Lightning driven.</span></p>
+
+        <div class="stat-grid">
+            <div class="stat-item">
+                <span class="hud-label">Top Speed</span>
+                <span class="stat-value">120<span class="stat-unit">km/h</span></span>
+            </div>
+            <div class="stat-item">
+                <span class="hud-label">Range</span>
+                <span class="stat-value">250<span class="stat-unit">km</span></span>
+            </div>
+            <div class="stat-item">
+                <span class="hud-label">Torque</span>
+                <span class="stat-value">95<span class="stat-unit">nm</span></span>
+            </div>
+            <div class="stat-item">
+                <span class="hud-label">Weight</span>
+                <span class="stat-value">18<span class="stat-unit">kg</span></span>
+            </div>
+        </div>
     </section>
 
     <div class="spacer"></div>
@@ -97,8 +166,7 @@
     <section class="scroll-section end-section">
         <p class="final-tagline">PROJECT: SURGE // STATUS: ONLINE</p>
         <h1 class="end-title">
-            Ready to <span class="text-outline">Ride?</span><br>
-            Experience the <span class="text-gradient-alt">Surge</span>
+            EVOLVE<br>OR DIE.
         </h1>
 
         <div class="end-buttons">
