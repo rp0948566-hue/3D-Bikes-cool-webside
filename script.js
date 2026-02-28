@@ -1,212 +1,81 @@
 const modelViewer = document.querySelector("#bike-viewer");
 
-modelViewer.addEventListener("load", () => {
-    // Select the bike's material
-    const material = modelViewer.model.materials[0];
+// --- Advanced Text Scramble Effect ---
+const scrambleText = (element) => {
+    const originalText = element.innerText;
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
+    let iterations = 0;
 
-    // 1. Set color to Pure Black
-    material.pbrMetallicRoughness.setBaseColorFactor([0, 0, 0, 1]);
+    element.style.opacity = "1";
+    element.style.transform = "translateY(0)";
 
-    // 2. Set Metallic to 1.0 (Maximum)
-    material.pbrMetallicRoughness.setMetallicFactor(1.0);
+    const interval = setInterval(() => {
+        element.innerText = originalText.split("")
+            .map((char, index) => {
+                if (index < iterations) return originalText[index];
+                if (char === "<" || char === "br" || char === ">") return char; // skip tags
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("");
 
-    // 3. Set Roughness to 0.03 (Mirror-like reflection)
-    material.pbrMetallicRoughness.setRoughnessFactor(0.03);
-});
-
-// Progress bar logic
-const onProgress = (event) => {
-    const progressBar = event.target.querySelector('.progress-bar');
-    const updatingBar = event.target.querySelector('.update-bar');
-    if (updatingBar) {
-        updatingBar.style.width = `${event.detail.totalProgress * 100}%`;
-    }
-    if (event.detail.totalProgress === 1) {
-        progressBar.classList.add('hide');
-    }
-};
-modelViewer.addEventListener('progress', onProgress);
-
-// Smooth Scroll & Mouse Parallax
-let currentProgress = 0;
-let targetProgress = 0;
-let mouseX = 0;
-let mouseY = 0;
-let currentMouseX = 0;
-let currentMouseY = 0;
-
-window.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2; // -1 to 1
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2; // -1 to 1
-});
-
-const renderLoop = () => {
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (scrollHeight > 0) {
-        targetProgress = scrollTop / scrollHeight;
-    }
-
-    // Smooth lerp for cinematic precision (0.12 friction factor for faster response)
-    currentProgress += (targetProgress - currentProgress) * 0.12;
-
-    // Mouse Smoothing
-    currentMouseX += (mouseX - currentMouseX) * 0.05;
-    currentMouseY += (mouseY - currentMouseY) * 0.05;
-
-    // We break the scroll progress into specific cinematic keyframes:
-    let offsetD, radius, heightOffset;
-
-    // Smooth 360 rotation for a normal, cool speed
-    const orbitAngle = currentProgress * 360;
-    const fieldOfView = 30; // Lock FOV to 30 for much more stable, normal proportion sizing
-
-    // INCREASE RADIUS to make bike look smaller/further away
-    const baseRadius = 4.5;
-
-    if (currentProgress < 0.15) {
-        // 1. [0.0 to 0.15]: Start Page (Intro Section) 
-        // Start perfectly centered, wide shot.
-        let p = currentProgress / 0.15; // 0 to 1
-
-        offsetD = p * 1.8; // Move to the right
-        radius = baseRadius + (p * -0.5); // Zooms gently from 4.5 to 4.0
-        heightOffset = p * -0.15;
-
-    } else if (currentProgress < 0.45) {
-        // 2. [0.15 to 0.45]: Hero Text
-        // Keep bike locked HARD RIGHT to avoid text.
-        offsetD = 1.8;
-        radius = 4.0;  // Stay at a comfortable 'normal' size
-        heightOffset = -0.15;
-
-    } else if (currentProgress < 0.70) {
-        // 3. [0.45 to 0.70]: Center Break / Transition
-        // Bike moves back to right for widgets
-        let p = (currentProgress - 0.45) / 0.25; // 0 to 1
-
-        offsetD = 1.8; // Stay on the right
-        radius = 4.0 + (p * 0.2);
-        heightOffset = -0.15 + (p * 0.25);
-
-    } else {
-        // 4. [0.70 to 1.0]: Final scroll into the Ready to Ride section
-        // Bring the bike back exactly to the absolute center.
-        let p = (currentProgress - 0.70) / 0.30; // 0 to 1
-
-        offsetD = 1.8 - (p * 1.8); // Snap back to 0 (centered)
-        radius = 4.2 + (p * 0.3); // Zoom out slightly for final view
-        heightOffset = 0.1 + (p * 0.3);
-    }
-
-    // Calculate world X and Z to shift camera target left/right purely relative to camera perspective
-    const rad = orbitAngle * Math.PI / 180;
-    const panX = offsetD * -Math.cos(rad);
-    const panZ = offsetD * Math.sin(rad);
-
-    // Inject into the Model Viewer attributes
-    modelViewer.cameraOrbit = `${orbitAngle}deg 75deg ${radius}m`;
-
-    // Add subtle mouse parallax to the target for extra "cool" points
-    const finalPanX = panX + (currentMouseX * 0.2);
-    const finalPanY = heightOffset - (currentMouseY * 0.1);
-
-    modelViewer.cameraTarget = `${finalPanX}m ${finalPanY}m ${panZ}m`;
-    modelViewer.fieldOfView = `${fieldOfView}deg`;
-
-    // Fade the fixed scroll hint based on progress
-    const scrollHint = document.getElementById('fixed-scroll-hint');
-    if (scrollHint) {
-        if (currentProgress > 0.01) {
-            scrollHint.style.opacity = '0';
-            scrollHint.style.pointerEvents = 'none';
-        } else {
-            scrollHint.style.opacity = '0.6';
-            scrollHint.style.pointerEvents = 'auto';
-        }
-    }
-
-    requestAnimationFrame(renderLoop);
+        if (iterations >= originalText.length) clearInterval(interval);
+        iterations += 1 / 3;
+    }, 30);
 };
 
-// Start the physics loop
-requestAnimationFrame(renderLoop);
-
-// Intersection Observer for Cinematic Text Fading
-const sectionObserver = new IntersectionObserver((entries) => {
+// --- Intersection Observer for Slick Reveals ---
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-        } else {
-            entry.target.classList.remove("visible");
+            const titles = entry.target.querySelectorAll(".hero-title");
+            titles.forEach(title => {
+                if (title.getAttribute("data-revealed") !== "true") {
+                    scrambleText(title);
+                    title.setAttribute("data-revealed", "true");
+                }
+            });
         }
     });
-}, { threshold: 0.5 }); // Fade in when halfway up the screen
+}, { threshold: 0.3 });
 
 document.querySelectorAll(".scroll-section").forEach(section => {
-    sectionObserver.observe(section);
+    revealObserver.observe(section);
 });
 
-// Cool Vibe: Floating Particle System
-const canvas = document.getElementById("bg-particles");
-const ctx = canvas.getContext("2d");
-let width, height;
-let particles = [];
+// --- Cinematic Scroll System ---
+window.addEventListener("scroll", () => {
+    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
 
-const resize = () => {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
+    // Rotate model 360 degrees smoothly
+    const rotation = scrollPercent * 360;
+    modelViewer.cameraOrbit = `${rotation}deg 75deg 4.5m`;
+
+    // Parallax logic for subtle depth
+    const liquidBlob = document.querySelector(".liquid-blob");
+    if (liquidBlob) {
+        liquidBlob.style.transform = `translate(${window.scrollY * 0.1}px, ${window.scrollY * 0.05}px) rotate(${window.scrollY * 0.02}deg)`;
+    }
+});
+
+// --- Model Material Refinement ---
+modelViewer.addEventListener("load", () => {
+    const material = modelViewer.model.materials[0];
+    material.pbrMetallicRoughness.setBaseColorFactor([0.02, 0.02, 0.02, 1]); // Specialized Carbon Black
+    material.pbrMetallicRoughness.setMetallicFactor(0.9);
+    material.pbrMetallicRoughness.setRoughnessFactor(0.1);
+});
+
+// --- Background Particles Support (Placeholder) ---
+const initParticles = () => {
+    const canvas = document.getElementById('bg-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Minimalist particle logic can be added here
 };
-window.addEventListener('resize', resize);
-resize();
 
-class Particle {
-    constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.s = Math.random() * 1.5; // size
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.alpha = Math.random() * 0.5;
-    }
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-        // make them twinkle based on scroll velocity
-        let vel = Math.abs(currentProgress - targetProgress);
-        this.alpha = Math.min(0.8, this.alpha + (vel * 0.05));
-        if (this.alpha > 0.1) this.alpha -= 0.005;
-    }
-    draw() {
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-for (let i = 0; i < 150; i++) {
-    particles.push(new Particle());
-}
-
-const drawParticles = () => {
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-        p.update();
-        p.draw();
-    });
-
-    // Parallax the ambient glow with the scroll
-    const glow = document.querySelector(".ambient-glow");
-    if (glow) {
-        glow.style.transform = `translate(-50%, calc(-50% + ${currentProgress * 200}px))`;
-    }
-
-    requestAnimationFrame(drawParticles);
-}
-drawParticles();
+window.addEventListener('resize', initParticles);
+initParticles();

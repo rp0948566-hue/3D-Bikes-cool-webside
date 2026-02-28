@@ -2,27 +2,108 @@
 <html lang="en">
 
 <head>
-    <title>Surge Electric Bike</title>
+    <title>SURGE // PERFORMANCE EV</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Orbitron:wght@400;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Orbitron:wght@400;700;900&display=swap"
         rel="stylesheet">
     <link type="text/css" href="./style.css" rel="stylesheet" />
 </head>
 
 <body>
+    <!-- Environmental Effects -->
+    <canvas id="bg-particles"></canvas>
+    <div class="ambient-glow"></div>
+    <div class="liquid-blob"></div>
+    <div class="hud-scanner"></div>
+    <div class="scanlines-overlay"></div>
+
+    <div class="vertical-label">SURGE // NEURAL_DYNAMICS // 2026</div>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#" class="nav-link">MODELS</a>
+            <a href="#" class="nav-link">TECHNOLOGY</a>
+            <a href="#" class="nav-link">UTILITY</a>
+        </div>
+        <a href="#" class="cta-preorder">RESERVE NOW</a>
+    </nav>
+
+    <div class="hud-layer">
+        <div class="status-indicator">
+            <div class="status-ping"></div>
+            SYSTEM:_ENCRYPTED_LINK_ACTIVE
+        </div>
+        <div class="token" style="position: static; margin-top:10px; opacity:0.5;">DECRYPTING_BIO_SIGNATURE...</div>
+    </div>
+
+    <div class="token" style="top: 25%; right: 8%;">[ 0x_PROTOTYPE_88 ]</div>
+    <div class="token" style="bottom: 20%; right: 12%;">[ TORQUE_VECTOR_LVL_9 ]</div>
+
     <model-viewer id="bike-viewer" src="5b133dc8-d85c-4378-a771-9b5ffc9c2251.glb" tone-mapping="neutral"
         shadow-intensity="2" exposure="1.5" interaction-prompt="none" disable-zoom disable-pan
         environment-image="neutral" style="width: 100%; height: 100vh; position: fixed; top: 0; left: 0; z-index: 1;">
-        <div class="progress-bar hide" slot="progress-bar">
-            <div class="update-bar"></div>
-        </div>
+
+        <button class="hotspot" slot="hotspot-core" data-position="-0.2m 0.35m 0.1m" data-normal="0 1 0">
+            <div class="hotspot-annotation">72V LITHIUM CORE</div>
+        </button>
+        <button class="hotspot" slot="hotspot-motor" data-position="0.3m 0.15m 0m" data-normal="1 0 0">
+            <div class="hotspot-annotation">95Nm DUAL-DRIVE</div>
+        </button>
     </model-viewer>
 
-    <div class="scroll-container" style="height: 500vh; position: relative; z-index: 0;">
-        <!-- Transparent scroll buffer to allow model rotation -->
-    </div>
+    <main class="scroll-container">
+
+        <section class="scroll-section" id="hero">
+            <div class="content-block">
+                <div class="section-label">S_01 // DOMINANCE</div>
+                <h1 class="hero-title">RAW<br>POWER.</h1>
+                <p class="desc-text">Architecture meets ultimate velocity. The Surge V2 is a carbon-forged statement of
+                    performance, engineered for those who demand absolute control.</p>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="tech" style="justify-content: flex-end;">
+            <div class="content-block" style="text-align: right;">
+                <div class="section-label" style="justify-content: flex-end;">S_02 // INTELLIGENCE</div>
+                <h1 class="hero-title">NEURAL<br>OS.</h1>
+                <p class="desc-text" style="margin-left: auto;">Real-time torque vectoring and predictive battery
+                    management. A machine that thinks as fast as it moves.</p>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="specs">
+            <div class="content-block">
+                <div class="section-label">S_03 // METRICS</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top:40px;">
+                    <div>
+                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.4); margin-bottom:10px;">TOP SPEED
+                        </div>
+                        <div style="font-family: var(--font-accent); font-size: 4rem; line-height:1;">120<small
+                                style="font-size: 1rem; color: var(--primary-neon); vertical-align: super;">KM/H</small>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.4); margin-bottom:10px;">ACCELERATION
+                        </div>
+                        <div style="font-family: var(--font-accent); font-size: 4rem; line-height:1;">2.4<small
+                                style="font-size: 1rem; color: var(--primary-neon); vertical-align: super;">S</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="final"
+            style="flex-direction: column; justify-content: center; text-align: center;">
+            <div class="section-label" style="margin-bottom: 20px;">S_04 // ACCESS</div>
+            <h1 class="hero-title" style="font-size: 8rem; margin-bottom: 50px;">EVOLVE.</h1>
+            <a href="#" class="cta-preorder"
+                style="padding: 24px 80px; font-size: 1.1rem; pointer-events: auto;">CONFIGURE NOW</a>
+        </section>
+
+    </main>
 
     <script src="script.js"></script>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
